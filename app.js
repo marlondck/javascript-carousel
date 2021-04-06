@@ -23,3 +23,34 @@
     3 No passo 3.4, se o slide exibido atualmente não corresponder ao index do 
       1º slide, o slide anterior deve ser exibido.
 */
+const slides = document.querySelectorAll('[data-js="carousel__item"]')
+const prevButton = document.querySelector('[data-js="carousel__button--prev"]')
+const nextButton = document.querySelector('[data-js="carousel__button--next"]')
+
+let currentSlideIndex = 0
+
+nextButton.addEventListener('click', () => {
+  if(currentSlideIndex === slides.length -1) {
+    currentSlideIndex = 0
+  } else {
+    currentSlideIndex ++
+  }
+
+  slides.forEach(slide => 
+      slide.classList.remove('carousel__item--visible'))
+
+  slides[currentSlideIndex].classList.add('carousel__item--visible')
+})
+
+prevButton.addEventListener('click', () => {
+  if(currentSlideIndex === 0) {
+    currentSlideIndex = slides.length - 1 
+  } else {
+    currentSlideIndex-- 
+  }
+
+  slides.forEach(slide => 
+    slide.classList.remove('carousel__item--visible'))
+
+  slides[currentSlideIndex].classList.add('carousel__item--visible')
+})
